@@ -7,6 +7,21 @@ org 0000h
 
 org 0030h
 START:
+	; 0 = 41h
+	; 1 = 4Bh
+	; 2 = 4Ah
+	; 3	= 49h
+	; 4 = 48h
+	; 5 = 47h
+	; 6	= 46h
+	; 7 = 45h
+	; 8 = 44h
+	; 9 = 43h
+
+	MOV 61H, #43h ; 9  
+	MOV 62H, #45h ; 7
+	MOV 63H, #49h ; 3
+	MOV 64H, #4Bh ; 1
 
 	MOV 40H, #'#' 
 	MOV 41H, #'0'
@@ -19,8 +34,10 @@ START:
 	MOV 48H, #'4'
 	MOV 49H, #'3'
 	MOV 4AH, #'2'
-	MOV 4BH, #'1'	  
-
+	MOV 4BH, #'1'
+	  
+	MOV R1, #71H
+		
 MAIN:
 	
 	acall lcd_init
@@ -38,24 +55,29 @@ MAIN:
 	ACALL sendCharacter
 	MOV A, #3Ah
 	ACALL sendCharacter
-	
 	MOV A, #07h
-	ACALL posicionaCursor	
+	ACALL posicionaCursor
+
+
 ROTINA:
 	ACALL leituraTeclado
 	JNB F0, ROTINA  
-	
+		
 	MOV A, #40h
 	ADD A, R0
 	MOV R0, A
-	MOV A, @R0        
+
+	MOV @R1, A
+	INC R1
+
+	MOV A, @R0  
+	    
 	ACALL sendCharacter
 	CLR F0
 	JMP ROTINA
 
 leituraTeclado:
 	MOV R0, #0		
-
 	MOV P0, #0FFh	
 	CLR P0.0		
 	CALL colScan	
@@ -252,7 +274,6 @@ clearDisplay:
 
 	CALL delay		
 	RET
-
 
 delay:
 	MOV R7, #50
