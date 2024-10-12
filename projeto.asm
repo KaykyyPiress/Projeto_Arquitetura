@@ -36,8 +36,8 @@ START:
 	MOV 4AH, #'2'
 	MOV 4BH, #'1'
 	  
-	MOV R1, #71H
-		
+	MOV R1, #51H
+	MOV R3, #4
 MAIN:
 	
 	acall lcd_init
@@ -74,8 +74,100 @@ ROTINA:
 	    
 	ACALL sendCharacter
 	CLR F0
-	JMP ROTINA
+	DJNZ R3, ROTINA
+	
+	MOV R1, #51H
+	MOV R0, #61H
+	MOV R4, #4
 
+	COMPARACAO:
+		
+		MOV A, @R0
+		MOV B, @R1
+		
+		CJNE A,B , DIFERENTE
+
+		INC R1
+		INC R0
+		
+		DJNZ R4, COMPARACAO
+		SJMP CORRETO
+
+CORRETO:
+		mov A, #00h
+		ACALL posicionaCursor 
+		MOV A, #'_'
+		ACALL sendCharacter
+		MOV A, #'_'
+		ACALL sendCharacter	
+		MOV A, #'_'
+		ACALL sendCharacter
+		MOV A, #'_'
+		ACALL sendCharacter 
+		MOV A, #'_'
+		ACALL sendCharacter
+		MOV A, #'_'
+		ACALL sendCharacter	
+		MOV A, #'O'
+		ACALL sendCharacter
+		MOV A, #'P'
+		ACALL sendCharacter
+		MOV A, #'E'
+		ACALL sendCharacter
+		MOV A, #'N'
+		ACALL sendCharacter	
+		MOV A, #'_'
+		ACALL sendCharacter
+		MOV A, #'_'
+		ACALL sendCharacter 
+		MOV A, #'_'
+		ACALL sendCharacter
+		MOV A, #'_'
+		ACALL sendCharacter	
+		MOV A, #'_'
+		ACALL sendCharacter
+		MOV A, #'_'
+		ACALL sendCharacter
+		SJMP $
+DIFERENTE:
+	SJMP FIM
+
+FIM:
+		mov A, #00h
+		ACALL posicionaCursor 
+		MOV A, #'_'
+		ACALL sendCharacter
+		MOV A, #'_'
+		ACALL sendCharacter	
+		MOV A, #'_'
+		ACALL sendCharacter
+		MOV A, #'_'
+		ACALL sendCharacter 
+		MOV A, #'_'
+		ACALL sendCharacter
+		MOV A, #'_'
+		ACALL sendCharacter	
+		MOV A, #'C'
+		ACALL sendCharacter
+		MOV A, #'L'
+		ACALL sendCharacter
+		MOV A, #'O'
+		ACALL sendCharacter
+		MOV A, #'S'
+		ACALL sendCharacter	
+		MOV A, #'E'
+		ACALL sendCharacter
+		MOV A, #'_'
+		ACALL sendCharacter 
+		MOV A, #'_'
+		ACALL sendCharacter
+		MOV A, #'_'
+		ACALL sendCharacter	
+		MOV A, #'_'
+		ACALL sendCharacter
+		MOV A, #'_'
+		ACALL sendCharacter
+		SJMP $
 leituraTeclado:
 	MOV R0, #0		
 	MOV P0, #0FFh	
@@ -229,8 +321,6 @@ posicionaCursor:
 	CALL delay			
 	RET
 
-
-
 retornaCursor:
 	CLR RS	
 	CLR P1.7		
@@ -251,8 +341,6 @@ retornaCursor:
 
 	CALL delay		
 	RET
-
-
 
 clearDisplay:
 	CLR RS	
@@ -276,7 +364,7 @@ clearDisplay:
 	RET
 
 delay:
-	MOV R7, #50
+	MOV R7, #15
 	DJNZ R7, $
 	RET
 
