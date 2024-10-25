@@ -94,6 +94,12 @@ ROTINA:
 		SJMP CORRETO
 
 CORRETO:
+		MOV P1, #0FFH
+		CLR P1.0
+		CLR P1.1
+		CLR P1.2
+		CLR P1.3
+
 		mov A, #00h
 		ACALL posicionaCursor 
 		MOV A, #'_'
@@ -367,4 +373,3 @@ delay:
 	MOV R7, #15
 	DJNZ R7, $
 	RET
-
