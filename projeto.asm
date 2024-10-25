@@ -96,8 +96,8 @@ ROTINA:
 		SJMP CORRETO
 
 CORRETO:
-		MOV P1, #00H ;liga todos os leds
-		
+		MOV P1, #00H ;liga todos os led
+
 		mov A, #00h
 		ACALL posicionaCursor 
 		MOV A, #'_'
@@ -132,6 +132,22 @@ CORRETO:
 		ACALL sendCharacter
 		MOV A, #'_'
 		ACALL sendCharacter
+
+		INT01:
+			CPL P3.0
+			RETI
+
+		MOTORDC:
+			MOV TMOD, #0H
+			SETB EA
+			SETB ET1
+			SETB TR1
+			SETB P3.0
+			CLR P3.1
+			JMP $
+
+
+
 		SJMP $
 DIFERENTE:
 	SJMP FIM
@@ -371,4 +387,3 @@ delay:
 	MOV R7, #15
 	DJNZ R7, $
 	RET
-
