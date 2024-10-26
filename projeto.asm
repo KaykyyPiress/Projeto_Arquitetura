@@ -37,11 +37,10 @@ START:
 	MOV 4BH, #'1'
 	  
 	MOV R1, #51H
-	MOV R3, #4
-MAIN:
-	
+	MOV R5,#3
 	acall lcd_init
-
+MAIN:
+	MOV R3, #4
 	
 	mov A, #00h
 	ACALL posicionaCursor 
@@ -62,6 +61,7 @@ MAIN:
 
 
 ROTINA:
+	
 	ACALL leituraTeclado
 	JNB F0, ROTINA  
 		
@@ -133,10 +133,6 @@ CORRETO:
 		MOV A, #'_'
 		ACALL sendCharacter
 
-		INT01:
-			CPL P3.0
-			RETI
-
 		MOTORDC:
 			MOV TMOD, #0H
 			SETB EA
@@ -144,13 +140,48 @@ CORRETO:
 			SETB TR1
 			SETB P3.0
 			CLR P3.1
-			JMP $
+			SJMP $
 
-
-
-		SJMP $
 DIFERENTE:
-	SJMP FIM
+	mov A, #00h
+	ACALL posicionaCursor 
+	MOV A, #'_'
+	ACALL sendCharacter
+	MOV A, #'_'
+	ACALL sendCharacter	
+	MOV A, #'_'
+	ACALL sendCharacter
+	MOV A, #'_'
+	ACALL sendCharacter 
+	MOV A, #'E'
+	ACALL sendCharacter
+	MOV A, #'R'
+	ACALL sendCharacter	
+	MOV A, #'R'
+	ACALL sendCharacter
+	MOV A, #'A'
+	ACALL sendCharacter
+	MOV A, #'D'
+	ACALL sendCharacter
+	MOV A, #'A'
+	ACALL sendCharacter	
+	MOV A, #'_'
+	ACALL sendCharacter
+	MOV A, #'_'
+	ACALL sendCharacter 
+	MOV A, #'_'
+	ACALL sendCharacter
+	MOV A, #'_'
+	ACALL sendCharacter	
+	MOV A, #'_'
+	ACALL sendCharacter
+	MOV A, #'_'
+	ACALL sendCharacter
+	DJNZ R5, RESET
+	ACALL FIM
+
+RESET:
+	ACALL MAIN
 
 FIM:
 		mov A, #00h
@@ -165,17 +196,17 @@ FIM:
 		ACALL sendCharacter 
 		MOV A, #'_'
 		ACALL sendCharacter
-		MOV A, #'_'
-		ACALL sendCharacter	
 		MOV A, #'C'
-		ACALL sendCharacter
+		ACALL sendCharacter	
 		MOV A, #'L'
 		ACALL sendCharacter
 		MOV A, #'O'
 		ACALL sendCharacter
 		MOV A, #'S'
-		ACALL sendCharacter	
+		ACALL sendCharacter
 		MOV A, #'E'
+		ACALL sendCharacter	
+		MOV A, #'D'
 		ACALL sendCharacter
 		MOV A, #'_'
 		ACALL sendCharacter 
