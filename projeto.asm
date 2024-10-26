@@ -56,9 +56,32 @@ MAIN:
 	ACALL sendCharacter
 	MOV A, #3Ah
 	ACALL sendCharacter
+	MOV A, #'_'
+	ACALL sendCharacter
+	MOV A, #'_'
+	ACALL sendCharacter	
+	MOV A, #'_'
+	ACALL sendCharacter
+	MOV A, #'_'
+	ACALL sendCharacter 
+	MOV A, #'_'
+	ACALL sendCharacter		
+	MOV A, #'_'
+	ACALL sendCharacter	
+	MOV A, #'_'
+	ACALL sendCharacter
+	MOV A, #'_'		
+	ACALL sendCharacter	
+	MOV A, #'_'
+	ACALL sendCharacter
+	MOV A, #'_'
+	ACALL sendCharacter 
+	MOV A, #'_'
+	ACALL sendCharacter
+	MOV A, #'_'
+	ACALL sendCharacter	
 	MOV A, #07h
 	ACALL posicionaCursor
-
 
 ROTINA:
 	
@@ -134,13 +157,12 @@ CORRETO:
 		ACALL sendCharacter
 
 		MOTORDC:
-			MOV TMOD, #0H
+			MOV TMOD, #10H
 			SETB EA
 			SETB ET1
 			SETB TR1
 			SETB P3.0
 			CLR P3.1
-			SJMP $
 
 DIFERENTE:
 	mov A, #00h
