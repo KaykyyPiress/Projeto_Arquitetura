@@ -177,19 +177,19 @@ DIFERENTE:
 	ACALL sendCharacter
 	MOV A, #'_'
 	ACALL sendCharacter 
-	MOV A, #'E'
+	MOV A, #'_'
 	ACALL sendCharacter
-	MOV A, #'R'
+	MOV A, #'E'
 	ACALL sendCharacter	
+	MOV A, #'R'
+	ACALL sendCharacter
 	MOV A, #'R'
 	ACALL sendCharacter
 	MOV A, #'A'
 	ACALL sendCharacter
 	MOV A, #'D'
-	ACALL sendCharacter
-	MOV A, #'A'
 	ACALL sendCharacter	
-	MOV A, #'_'
+	MOV A, #'A'
 	ACALL sendCharacter
 	MOV A, #'_'
 	ACALL sendCharacter 
