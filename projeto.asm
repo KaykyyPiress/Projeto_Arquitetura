@@ -36,10 +36,11 @@ START:
 	MOV 4AH, #'2'
 	MOV 4BH, #'1'
 	  
-	MOV R1, #51H
+	
 	MOV R5,#3
 	acall lcd_init
 MAIN:
+	MOV R1, #51H
 	MOV R3, #4
 	
 	mov A, #00h
@@ -119,7 +120,7 @@ ROTINA:
 		SJMP CORRETO
 
 CORRETO:
-		MOV P1, #00H ;liga todos os led
+		MOV P1, #0FDH ;liga todos os led
 
 		mov A, #00h
 		ACALL posicionaCursor 
@@ -163,6 +164,7 @@ CORRETO:
 			SETB TR1
 			SETB P3.0
 			CLR P3.1
+		SJMP $
 
 DIFERENTE:
 	mov A, #00h
@@ -205,7 +207,8 @@ DIFERENTE:
 RESET:
 	ACALL MAIN
 
-FIM:
+FIM:	
+		MOV P1, #0FEH 
 		mov A, #00h
 		ACALL posicionaCursor 
 		MOV A, #'_'
