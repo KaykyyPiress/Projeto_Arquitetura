@@ -127,7 +127,7 @@ ROTINA:
 		SJMP CORRETO; inicia a função de correto
 
 CORRETO:
-		MOV P1, #0FDH ;liga o led verde
+		MOV P1, #0F0H ;liga o led verde
 		
 		;imprime no lcd a mensagem de aberto 
 		mov A, #00h
@@ -228,7 +228,7 @@ RESET:
 	ACALL MAIN
 
 FIM:	
-		MOV P1, #0FEH 
+		MOV P1, #0FH 
 		mov A, #00h
 		ACALL posicionaCursor 
 		MOV A, #'_'
