@@ -14,7 +14,7 @@ O programa tem como objetivo criar uma fechadura digital utilizando o simulador 
 ![leds](https://github.com/user-attachments/assets/a6ff16fe-3731-43fa-8548-5f1e2dfbb999)
 
 ### E os seguintes leds para cor vermelha:
-![lcd close](https://github.com/user-attachments/assets/6cd3e5f0-584c-452d-83f2-91ba9bd41060)
+![led errado](https://github.com/user-attachments/assets/dde2a129-e56c-4eec-907e-280d6e042207)
 
 
 ## Funcionamento do projeto
@@ -30,11 +30,8 @@ Digite a senha no Keyboard e aparecerá no LCD. Senha apenas de 4 dígitos.
 
 Após a inserção dos 4 digitos, caso seja a senha certa aparecerá no display _OPEN_. E acenderá 3 leds verdes e o motor girará em sentido horário. *SENHA INICIAL CORRETA 9999*
 
-![lcd open](https://github.com/user-attachments/assets/99f34d60-00de-4a44-8235-fdac4f6d2381)
 
-![motor open](https://github.com/user-attachments/assets/12109dc7-c26e-4b1c-af13-9431756f77b2)
-
-![led open](https://github.com/user-attachments/assets/7793ea48-a2bc-4172-95c1-7d3f784d8aee)
+![lcd open](https://github.com/user-attachments/assets/99f34d60-00de-4a44-8235-fdac4f6d2381)   ![motor open](https://github.com/user-attachments/assets/12109dc7-c26e-4b1c-af13-9431756f77b2)   ![led open](https://github.com/user-attachments/assets/7793ea48-a2bc-4172-95c1-7d3f784d8aee)
 
 
 Caso a senha esteja errada, aparecerá no display _ERRADO_.
@@ -44,11 +41,7 @@ Caso a senha esteja errada, aparecerá no display _ERRADO_.
 
 O usuário tem 3 tentativas antes de aparecer _CLOSED_ que será o fim das tentativas. O motor girará no sentido anti-horário e 3 leds se acenderão.
 
-![lcd close](https://github.com/user-attachments/assets/6cd3e5f0-584c-452d-83f2-91ba9bd41060)
-
-![led errado](https://github.com/user-attachments/assets/dde2a129-e56c-4eec-907e-280d6e042207)
-
-![motor close](https://github.com/user-attachments/assets/9a64146f-f11b-430e-86e8-8a5368523a67)
+![lcd close](https://github.com/user-attachments/assets/6cd3e5f0-584c-452d-83f2-91ba9bd41060)   ![motor close](https://github.com/user-attachments/assets/9a64146f-f11b-430e-86e8-8a5368523a67)   ![led errado](https://github.com/user-attachments/assets/dde2a129-e56c-4eec-907e-280d6e042207)
 
 
 
