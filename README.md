@@ -3,7 +3,11 @@
 ## Projeto Fechadura Digital
 ### Projeto utilizado com programa EDSIM51, com o Intel 8051
 
-O programa tem como objetivo criar uma fechadura digital utilizando o simulador EDSIM51 e o teclado disponível no software. As teclas digitadas são exibidas no display LCD em tempo real. Se o usuário inserir a combinação correta, o primeiro e o segundo LED acendem na cor verde, o motor gira 180º e no LCD aparece a palavra OPEN. Caso contrário, o LED 0 e o 1 acendem vermelhos e no LCD aparece a palavra ERRADO indicando que a senha está incorreta. O usuário tem 3 tentativas para acertar a senha. Número máximo de dígitos 4.
+O programa tem como objetivo criar uma fechadura digital utilizando o simulador EDSIM51 e o teclado disponível no software. As teclas digitadas são exibidas no display LCD em tempo real e armazenada no endereço 51 a 54. Após inserir, faz a verificação com o endereço de memória 61 a 64. Se o usuário inserir a combinação correta, os tres ultimos LEDs acendem na cor verde, o motor gira 180º no sentido horário e no LCD aparece a palavra OPEN. Caso contrário, os três primeiros LEDs acendem e no LCD aparece a palavra ERRADO indicando que a senha está incorreta e o motor gira em sentido anti-horário. O usuário tem 3 tentativas para acertar a senha. Número máximo de dígitos 4.
+
+## Diagrama de blocos do programa
+![diagrama de blocos](https://github.com/user-attachments/assets/23f33101-6df2-4fa0-aa3c-70951cbf6e82)
+
 
 ## Modificações para funcionamento do Projeto
 ### Ao colar o codigo no programa no EDSIM51, ajuste o teclado do Keyboard a opção 'pulse' e a Update Freq. em 50. 
