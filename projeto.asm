@@ -46,7 +46,7 @@
  	MOV R5,#3 ; numero de tentantivas
 	acall lcd_init; inicia o lcd
       MAIN:
-	MOV R1, #51H ; move pro R1 o endereço 51h 
+	MOV R1, #51H ; move pro R1 o endereço 51h, onde armazena a senha digitada 
  	MOV R3, #4 ; numero de digitos da senha
       	
       ;;imprime a mensagem no lcd para digitar a senha
@@ -116,11 +116,11 @@
        
       	COMPARACAO:
       		
- 		MOV A, @R0 ;move pro a o endereço do r0
-		MOV B, @R1; move pro b o endereço do r1
+ 		MOV A, @R0 ;move pro a o valor armazenado no endereço do r0
+		MOV B, @R1; move pro b o valor armazenado no endereço do r1
       		
  		CJNE A,B , DIFERENTE ;confere se os digitos estão iguais, se tiver iguais 
-      							; ele continua a execução, se estiver diferente ele imprime a errada
+      	; ele continua a execução, se estiver diferente ele imprime a errada
 		INC R1 ; incrementa o r1
  		INC R0; incrementa o r0
       		
@@ -130,7 +130,7 @@
       CORRETO:
  		MOV P1, #0F0H ;liga o led verde
       		
-      		;imprime no lcd a mensagem de aberto 
+      	;imprime no lcd a mensagem de aberto 
 		mov A, #00h
  		ACALL posicionaCursor 
  		MOV A, #'_'
