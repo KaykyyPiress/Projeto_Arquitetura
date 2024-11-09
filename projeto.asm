@@ -25,9 +25,9 @@
       
 	;senha pré definida
  	MOV 61H, #43h ; 9  
- 	MOV 62H, #45h ; 7
- 	MOV 63H, #49h ; 3
- 	MOV 64H, #4bh ; 1
+ 	MOV 62H, #43h ; 9
+ 	MOV 63H, #43h ; 9
+ 	MOV 64H, #43h ; 9
        
  	MOV 40H, #'#' 
  	MOV 41H, #'0'
