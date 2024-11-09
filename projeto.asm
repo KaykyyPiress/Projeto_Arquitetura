@@ -5,10 +5,10 @@
       org 0000h
  	LJMP START
        
-      org 001Bh ; Vetor de interrupção do Timer 1
-     AJMP TIMER_TRUE ; Salta para a rotina de interrupção do Timer 1
-      org 001Bh ; Vetor de interrupção do Timer 1
-     AJMP TIMER_FAILD ; Salta para a rotina de interrupção do Timer 1
+      org 001Bh ; interrupção do Timer 1
+     AJMP TIMER_TRUE ; Salta para a rotina de interrupção do timertrue
+      org 001Bh ; interrupção do Timer 1
+     AJMP TIMER_FAILD ; Salta para a rotina de interrupção do timefaild
        
       org 0030h
       START:
@@ -22,11 +22,12 @@
       	; 7 = 45h
       	; 8 = 44h
       	; 9 = 43h
-       
+      
+	;senha pré definida
  	MOV 61H, #43h ; 9  
- 	MOV 62H, #43h ; 7
- 	MOV 63H, #43h ; 3
- 	MOV 64H, #43h ; 1
+ 	MOV 62H, #45h ; 7
+ 	MOV 63H, #49h ; 3
+ 	MOV 64H, #4bh ; 1
        
  	MOV 40H, #'#' 
  	MOV 41H, #'0'
@@ -92,7 +93,7 @@
        
        
       ROTINA:
-      	
+    ;inicia a leitura do teclado
  	ACALL leituraTeclado
  	JNB F0, ROTINA  
       	
@@ -164,7 +165,8 @@
 		ACALL sendCharacter
 		MOV A, #'_'
 		ACALL sendCharacter
-       
+       		
+			;inicia o motor e faz um giro caso acerte a senha
       		MOTORTRUE:
  			MOV TMOD, #10H
  			MOV TL1, #253
@@ -176,17 +178,17 @@
  			CLR P3.1 ; Define direção do motor
 			SJMP $
        
-      		; Rotina de interrupção do Timer 1 para parar o motor após uma rotação
+      		; Rotina de interrupção do timertrue para parar o motor após uma rotação
       		TIMER_TRUE:
- 			CLR TR1 ; Para o Timer 1
+ 			CLR TR1 ; Para o timertrue
  			CLR P3.0 ; Desliga o motor
-			CLR ET1 ; Desativa interrupção do Timer 1
+			CLR ET1 ; Desativa interrupção do timertrue
 			RETI ; Retorna da interrupção
        
       ;caso a senha estiver incorreta executara essa função
-       
       DIFERENTE:
-       
+    
+	;exibe no lcd que a senha esta errada
 	mov A, #00h
  	ACALL posicionaCursor 
  	MOV A, #'_'
@@ -221,14 +223,17 @@
  	ACALL sendCharacter
  	MOV A, #'_'
  	ACALL sendCharacter
+	;decrementa o registrador onde possui as chances
  	DJNZ R5, RESET
+	;ao fim das chances se inicia o fechamento da fechadura
  	ACALL FIM
        
       RESET:
+	;retorna a rotina
  	ACALL MAIN
        
       FIM:	
-      		
+      	;exibe no lcd que trancou a fechadura
  		mov A, #00h
  		ACALL posicionaCursor 
  		MOV A, #'_'
@@ -264,7 +269,9 @@
 		MOV A, #'_'
  		ACALL sendCharacter
  		MOV P1, #1FH 
-       
+       		
+			;inicia o motor e faz ele da dois giros pra identificar
+			;o trancamento da fechadura
       		MOTORFAILD:
 			MOV TMOD, #10H
  			MOV TL1, #252
@@ -276,11 +283,11 @@
  			CLR P3.0 ; Define direção do motor
  			SJMP $
        
-      		; Rotina de interrupção do Timer 1 para parar o motor após uma rotação
+      		; Rotina de interrupção do timerfaild para parar o motor após uma rotação
       		TIMER_FAILD:
- 			CLR TR1 ; Para o Timer 1
+ 			CLR TR1 ; Para o timerfaild
  			CLR P3.0 ; Desliga o motor
- 			CLR ET1 ; Desativa interrupção do Timer 1
+ 			CLR ET1 ; Desativa interrupção do timerfaild
  			RETI ; Retorna da interrupção
        
       leituraTeclado:
