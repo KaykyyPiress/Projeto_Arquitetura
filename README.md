@@ -48,7 +48,6 @@ O usuário tem 3 tentativas antes de aparecer _CLOSED_ que será o fim das tenta
 ![lcd close](https://github.com/user-attachments/assets/6cd3e5f0-584c-452d-83f2-91ba9bd41060)   ![motor close](https://github.com/user-attachments/assets/9a64146f-f11b-430e-86e8-8a5368523a67)   ![led errado](https://github.com/user-attachments/assets/dde2a129-e56c-4eec-907e-280d6e042207)
 
 
-
-
-
+# Feito por:
+Kayky Pires de Paula e Rafael Dias Silva Costa
 
